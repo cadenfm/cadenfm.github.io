@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caden McGraw — Portfolio</title>
+  <meta name="description" content="Computer Engineering student building embedded systems, CAD enclosures, and practical software." />
+  <meta property="og:title" content="Caden McGraw — Portfolio" />
+  <meta property="og:description" content="Embedded systems, 3D printing, and practical software projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="og-image.png" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="icon" href="favicon.ico" />
+  <script>
+    // Respect user's system theme
+    (function() {
+      const stored = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (stored === "dark" || (!stored && prefersDark)) document.documentElement.classList.add("dark");
+    })();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Focus ring for accessibility */
+    :focus-visible { outline: 2px solid; outline-offset: 2px; }
+  </style>
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Caden McGraw",
+    "url":"https://your-domain.example",
+    "sameAs":["https://github.com/yourgithub","https://www.linkedin.com/in/yourlinkedin"]
+  }
+  </script>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white dark:bg-gray-900 px-3 py-1 rounded shadow">Skip to content</a>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/70 dark:bg-gray-950/70 border-b border-gray-200/60 dark:border-gray-800/60">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-2xl bg-sky-500/10 flex items-center justify-center font-semibold">CM</div>
+        <div>
+          <h1 class="text-lg font-semibold leading-tight">Caden McGraw</h1>
+          <p class="text-xs text-gray-600 dark:text-gray-400">Computer Engineering @ UTC • Embedded, CAD, Prototyping</p>
+        </div>
+      </div>
+      <nav class="hidden sm:flex items-center gap-4 text-sm">
+        <a href="#projects" class="hover:underline">Projects</a>
+        <a href="#about" class="hover:underline">About</a>
+        <a href="#resume" class="hover:underline">Résumé</a>
+        <a href="#contact" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">Contact</a>
+        <button id="themeToggle" class="ml-2 px-2 py-1 rounded-lg border border-gray-300 dark:border-gray-700" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-4 py-12 sm:py-16" id="main">
+    <div class="grid md:grid-cols-5 gap-8 items-center">
+      <div class="md:col-span-3">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">I build useful things with electrons, code, and plastic.</h2>
+        <p class="mt-4 text-gray-700 dark:text-gray-300">
+          Embedded systems (ESP32, drivers, power), SolidWorks enclosures with 3D prints, and small apps that solve real problems.
+          Here are my best 6. Each one includes a 1-liner, tech, challenges, and proof (repo + video).
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#projects" class="px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">See Projects</a>
+          <a href="#contact" class="px-4 py-2 rounded-xl bg-sky-500 text-white hover:bg-sky-600">Hire / Contact</a>
+        </div>
+      </div>
+      <div class="md:col-span-2">
+        <div class="rounded-3xl p-4 border border-gray-200 dark:border-gray-800 shadow-sm">
+          <ul class="text-sm space-y-2">
+            <li><strong>Focus:</strong> Embedded, Prototyping, CAD</li>
+            <li><strong>Tools:</strong> ESP32, C/C++, FreeRTOS, KiCad, SolidWorks, JS</li>
+            <li><strong>Proof:</strong> Repos, demo videos, STL files</li>
+            <li><strong>Currently:</strong> Building an e-ink schedule dashboard</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <section class="max-w-6xl mx-auto px-4">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+      <div class="flex items-center gap-3">
+        <input id="search" type="search" placeholder="Search projects (e.g., ESP32, CAD, Java)"
+               class="w-72 max-w-full px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900" />
+        <select id="filter" class="px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900">
+          <option value="">All tags</option>
+          <option>embedded</option>
+          <option>cad</option>
+          <option>software</option>
+          <option>hardware</option>
+        </select>
+      </div>
+      <p class="text-sm text-gray-600 dark:text-gray-400">Press “/” to focus search • Enter to clear</p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="max-w-6xl mx-auto px-4 py-8">
+    <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="max-w-6xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
+    <h3 class="text-2xl font-bold">About</h3>
+    <p class="mt-3 text-gray-700 dark:text-gray-300">
+      I’m a Computer Engineering student who likes turning sketches into working hardware/software. I design enclosures
+      in SolidWorks, write firmware for microcontrollers, and ship small apps that solve real problems. I value clarity,
+      measurable results, and clean build logs.
+    </p>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume" class="max-w-6xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
+    <h3 class="text-2xl font-bold">Résumé</h3>
+    <p class="mt-3">Quick highlights + a downloadable PDF.</p>
+    <ul class="mt-4 grid sm:grid-cols-2 gap-3 text-sm">
+      <li>• Embedded: drivers, sensors, power budgeting</li>
+      <li>• CAD: enclosures, print-ready parts, tolerances</li>
+      <li>• Software: Java, JS/TS, data structures</li>
+      <li>• Tools: KiCad, SolidWorks, Git/GitHub, Linux</li>
+    </ul>
+    <a href="resume.pdf" class="mt-4 inline-block px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">Download PDF</a>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="max-w-6xl mx-auto px-4 py-12 border-t border-gray-200 dark:border-gray-800">
+    <h3 class="text-2xl font-bold">Contact</h3>
+    <p class="mt-3 text-gray-700 dark:text-gray-300">
+      Best way to reach me: <a class="underline" href="mailto:you@yourdomain.com">you@yourdomain.com</a>.
+      Also on <a class="underline" href="https://github.com/yourgithub">GitHub</a> and
+      <a class="underline" href="https://www.linkedin.com/in/yourlinkedin">LinkedIn</a>.
+    </p>
+  </section>
+
+  <footer class="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
+    © <span id="year"></span> Caden McGraw • Built with HTML + Tailwind • Lighthouse-friendly
+  </footer>
+
+  <!-- Project Card Template (rendered via JS) -->
+  <template id="card-tpl">
+    <article class="group relative rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:shadow-md transition">
+      <div class="aspect-video bg-gray-100 dark:bg-gray-900">
+        <img data-key="image" alt="" class="w-full h-full object-cover hidden" loading="lazy" />
+      </div>
+      <div class="p-4 space-y-2">
+        <h4 class="text-lg font-semibold" data-key="title"></h4>
+        <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-3" data-key="summary"></p>
+        <div class="flex flex-wrap gap-2 pt-1" data-key="tags"></div>
+        <div class="flex gap-3 pt-1">
+          <a data-key="repo" class="text-sm underline" target="_blank" rel="noopener">Repo</a>
+          <a data-key="demo" class="text-sm underline" target="_blank" rel="noopener">Demo</a>
+          <button data-key="details" class="ml-auto text-sm underline">Details</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center">
+    <div class="absolute inset-0 bg-black/50" data-close></div>
+    <div class="relative max-w-2xl mx-auto bg-white dark:bg-gray-950 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 m-4">
+      <h4 class="text-xl font-semibold" id="m-title"></h4>
+      <p class="mt-2 text-sm text-gray-700 dark:text-gray-300" id="m-body"></p>
+      <button class="mt-6 px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900" data-close>Close</button>
+    </div>
+  </div>
+
+  <script>
+    const projects = [
+      {
+        title: "ESP32 E-Ink Class & Weather Dashboard",
+        summary: "Battery-friendly schedule + weather display using ESP32, FreeRTOS tasks, deep sleep, and a 2.9\" e-ink panel.",
+        details: "Problem: keep my schedule visible on my desk with near-zero power. Role: firmware, PCB wiring, 3D enclosure. Tech: ESP32, FreeRTOS, SPI, ULP. Challenges: partial refresh artifacts; solved with region redraw + LUT tweak. Result: ~40µA sleep, 60s update.",
+        tags: ["embedded", "hardware"],
+        image: "images/eink.jpg",
+        repo: "https://github.com/yourgithub/eink-dashboard",
+        demo: "https://your-demo.example"
+      },
+      {
+        title: "GPA Calculator (Canvas CSV → Insights)",
+        summary: "Parses Canvas exports and projects final grades with adjustable weights and what-if scenarios.",
+        details: "Role: data parsing, UI, export to PDF. Tech: JS, File API. Challenge: messy CSV; solved with robust tokenizer + schema checks.",
+        tags: ["software"],
+        image: "images/gpa.jpg",
+        repo: "https://github.com/yourgithub/gpa-calc",
+        demo: "#"
+      },
+      {
+        title: "SolidWorks Printed Enclosure (Snap-Fit)",
+        summary: "Parametric phone-sized enclosure with snap-fit, heat-set inserts, and cable relief.",
+        details: "Role: CAD, print testing. Tech: SolidWorks, FDM PLA, 0.2 mm layers. Challenge: tolerance; iterated 0.15→0.25 mm clearance.",
+        tags: ["cad", "hardware"],
+        image: "images/cad.jpg",
+        repo: "https://github.com/yourgithub/enclosure-stl",
+        demo: "#"
+      },
+      {
+        title: "Java Data Structures Benchmarks",
+        summary: "Microbenchmarks comparing custom DS vs. JDK for typical operations; charts and takeaways.",
+        details: "Role: implementation + benchmark harness. Tech: Java, JMH. Challenge: avoiding dead-code elim; proper Blackhole usage.",
+        tags: ["software"],
+        image: "images/java.jpg",
+        repo: "https://github.com/yourgithub/ds-bench",
+        demo: "#"
+      }
+      // Add 2–3 more
+    ];
+
+    const grid = document.getElementById("grid");
+    const tpl = document.getElementById("card-tpl");
+    const search = document.getElementById("search");
+    const filter = document.getElementById("filter");
+    const modal = document.getElementById("modal");
+    const mTitle = document.getElementById("m-title");
+    const mBody  = document.getElementById("m-body");
+
+    function render(list) {
+      grid.innerHTML = "";
+      list.forEach(p => {
+        const node = tpl.content.cloneNode(true);
+        node.querySelector('[data-key="title"]').textContent = p.title;
+        node.querySelector('[data-key="summary"]').textContent = p.summary;
+        const tagWrap = node.querySelector('[data-key="tags"]');
+        p.tags.forEach(t => {
+          const span = document.createElement("span");
+          span.className = "px-2 py-0.5 rounded-full text-xs border border-gray-300 dark:border-gray-700";
+          span.textContent = t;
+          tagWrap.appendChild(span);
+        });
+        const img = node.querySelector('[data-key="image"]');
+        if (p.image) {
+          img.src = p.image; img.alt = p.title + " image"; img.classList.remove("hidden");
+        }
+        node.querySelector('[data-key="repo"]').href = p.repo || "#";
+        node.querySelector('[data-key="demo"]').href = p.demo || "#";
+        node.querySelector('[data-key="details"]').addEventListener("click", () => openModal(p.title, p.details));
+        grid.appendChild(node);
+      });
+    }
+
+    function filterList() {
+      const q = (search.value || "").toLowerCase().trim();
+      const tag = filter.value;
+      render(projects.filter(p => {
+        const hit = p.title.toLowerCase().includes(q) || p.summary.toLowerCase().includes(q) || p.details.toLowerCase().includes(q);
+        const tagOk = !tag || p.tags.includes(tag);
+        return hit && tagOk;
+      }));
+    }
+
+    function openModal(title, body) {
+      mTitle.textContent = title;
+      mBody.textContent = body;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "/") { e.preventDefault(); search.focus(); }
+      if (e.key === "Escape") closeModal();
+      if (e.key === "Enter" && document.activeElement === search && !search.value) { search.value=""; filter.value=""; filterList(); }
+    });
+    modal.addEventListener("click", (e) => { if (e.target.dataset.close !== undefined) closeModal(); });
+
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      const c = document.documentElement.classList;
+      const isDark = c.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    search.addEventListener("input", filterList);
+    filter.addEventListener("change", filterList);
+    render(projects);
+  </script>
+</body>
+</html>
